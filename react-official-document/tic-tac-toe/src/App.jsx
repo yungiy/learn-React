@@ -1,32 +1,51 @@
+import './style.css'
 import {useState} from 'react';
 
-//eslint-disable-next-line react/prop-types
-function Square({ value }) {
-  return <button className="square">{value}</button>;
+function Square({value, onSquareClick}) {
+  return <button className="square" onClick={onSquareClick}>{value}</button>
 }
 
-//eslint-disable-next-line react/prop-types
-function Board({xIsNext, squares, onPlay}) {
-  function handleClick(i) {
-    if (calculateWinner(squares) || squares[i]) {
+function calculateWinner(squares) {
+  const lines = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6]
+  ];
+  for (let i = 0; i < lines.length; i++) {
+    const [x, y, z] = lines[i];
+    if (squares[x] && squares[x] === squares[y] && squares[x] === squares[z]) {
+      return squares[x];
+    }
+  }
+  return null;
+}
+
+function Board({xIsNext, squares, onplay}) {
+
+  const handleClick = (i) => {
+    if (squares[i] || calculateWinner(squares)) {
       return;
-    }
-    //eslint-disable-next-line react/prop-types
-    const nextSquares = squares.slice();
+    } // 사각형에 X, O 판별
+    const nextSquare = squares.slice();
     if (xIsNext) {
-      nextSquares[i] = 'X';
+      nextSquare[i] = "X";
     } else {
-      nextSquares[i] = 'O';
+      nextSquare[i] = "O";
     }
-    onPlay(nextSquares);
+    onplay(nextSquare);
   }
 
   const winner = calculateWinner(squares);
   let status;
   if (winner) {
-    status = 'Winner: ' + winner;
+    status = "승자는 " + winner;
   } else {
-    status = 'Next player: ' + (xIsNext ? 'X' : 'O');
+    status = "다음 플레이어는: " + (xIsNext ? 'X' : 'O');
   }
 
   return (
@@ -48,72 +67,47 @@ function Board({xIsNext, squares, onPlay}) {
         <Square value={squares[8]} onSquareClick={() => handleClick(8)}/>
       </div>
     </>
-  );
+  )
 }
 
 export default function Game() {
-  const [history, setHistory] = useState(() => [Array(9).fill(null)]);
+
+  const [history, setHistory] = useState([Array(9).fill(null)]);
   const [currentMove, setCurrentMove] = useState(0);
   const xIsNext = currentMove % 2 === 0;
   const currentSquares = history[currentMove];
 
-  function handlePlay(nextSquares) {
-    const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
-    setHistory(nextHistory);
-    setCurrentMove(nextHistory.length - 1);
+  const handlePlay = (nextSquares) => {
+    const nextHistory = ([...history.slice(0, currentMove + 1), nextSquares]);
+    setHistory(nextHistory)
+    setCurrentMove(nextHistory.length - 1)
   }
 
-  function jumpTo(nextMove) {
-    if (currentMove === nextMove) {
-      return;
-    }
-
+  const jumpTo = (nextMove) => {
     setCurrentMove(nextMove);
   }
 
   const moves = history.map((squares, move) => {
     let description;
     if (move > 0) {
-      description = 'Go to move #' + move;
+      description = "#" + move + "로 가기"
     } else {
-      description = 'Go to game start';
+      description = "시작하기";
     }
     return (
       <li key={move}>
         <button onClick={() => jumpTo(move)}>{description}</button>
       </li>
-    );
-  });
-
+    )
+  })
   return (
     <div className="game">
       <div className="game-board">
-        <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay}/>
+        <Board xIsNext={xIsNext} squares={currentSquares} handlePlay={handlePlay} onplay={handlePlay}/>
       </div>
       <div className="game-info">
         <ol>{moves}</ol>
       </div>
     </div>
-  );
-}
-
-function calculateWinner(squares) {
-  const lines = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-    [0, 4, 8],
-    [2, 4, 6]
-  ];
-
-  for (let i = 0; i < lines.length; i++) {
-    const [a, b, c] = lines[i];
-    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-      return squares[a];
-    }
-  }
-  return null;
+  )
 }
