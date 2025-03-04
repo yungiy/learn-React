@@ -1,21 +1,26 @@
-import { useState } from 'react';
+import { useReducer, useState } from 'react';
 
 function Reducer(state, action) {
   switch (action.type) {
-    
+    case 'INCREMENT':
+      return { value: state.value + 1 };
+    case 'DECREMENT':
+      return { value: state.value - 1 };
+    default:
+      return state; // 기존 상태 반환
   }
 }
 
 function Counter() {
-  const [value, setValue] = useState(0);
+  const [state, dispatch] = useReducer(Reducer, { value: 0 });
   return (
     <>
       <div>
         <p>
-          현재 카운터 값<b>{value}</b>입니다.
+          현재 카운터 값<b>{state.value}</b>입니다.
         </p>
-        <button onClick={() => setValue(value + 1)}>+ 1</button>
-        <button onClick={() => setValue(value - 1)}>- 1</button>
+        <button onClick={() => dispatch({type: "INCREMENT"})}>+ 1</button>
+        <button onClick={() => dispatch({type: "DECREMENT"})}>- 1</button>
       </div>
     </>
   );

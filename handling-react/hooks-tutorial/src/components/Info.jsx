@@ -1,29 +1,25 @@
-import { useEffect, useState } from "react";
+import { useReducer } from "react";
 
-export default function Info() {
-  const [name, setName] = useState("");
-  const [nickname, setNickname] = useState("");
+function reducer(state, action) {
+  return {
+    ...state, [action.name]: action.value
+  }
+}
 
-  const onChangeName = (e) => {
-    setName(e.target.value);
+function Info() {
+
+  const [state, dispatch] = useReducer(reducer, {name: '', nickname: ''});
+  const {name, nickname} = state;
+
+  const onChange = (e) => {
+    dispatch(e.target);
   };
-
-  const onChangeNickname = (e) => {
-    setNickname(e.target.value);
-  };
-
-  useEffect(() => {
-    console.log("effect", name);
-    return () => {
-      console.log('언마운트');
-    };
-  }, []);
 
   return (
     <>
       <div>
-        <input value={name} onChange={onChangeName} placeholder="이름 입력" />
-        <input value={nickname} onChange={onChangeNickname} placeholder="닉네임 입력" />
+        <input value={name} name="name" onChange={onChange}/>
+        <input value={nickname} name="nickname" onChange={onChange}/>
       </div>
       <div>
         <div>
@@ -36,3 +32,5 @@ export default function Info() {
     </>
   );
 }
+
+export default Info;
