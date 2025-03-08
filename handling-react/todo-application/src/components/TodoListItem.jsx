@@ -5,13 +5,14 @@ import {
 } from 'react-icons/md';
 import {twMerge} from 'tailwind-merge';
 
-export default function TodoListItem({todo}) {
-  const {text, checked} = todo;
+export default function TodoListItem({todo, onRemove, onToggle}) {
+  const {id, text, checked} = todo;
 
   return (
     <div
       className="p-2.5 flex items-center [&:nth-child(even)]:bg-[#f8f9fa] [&+&]: border-t-1 border-[#dee2e6]">
       <div
+        onClick={() => onToggle(id)}
         className={twMerge(
           "cursor-pointer flex-1/2 flex items-center",
           checked ? "[svg]:text-xl" : ""
@@ -28,8 +29,9 @@ export default function TodoListItem({todo}) {
           {text}
         </span>
       </div>
-      <div className="flex items-center text-base text-[#ff6b6b]
-          cursor-pointer hover:text-[#ff8787]">
+      <div
+        className="flex items-center text-base text-[#ff6b6b]
+          cursor-pointer hover:text-[#ff8787]" onClick={() => onRemove(id)}>
         <MdRemoveCircleOutline/>
       </div>
     </div>

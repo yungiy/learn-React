@@ -1,10 +1,13 @@
 import TodoListItem from './TodoListItem.jsx';
 
-export default function TodoList({todos}) {
+export default function TodoList({todos, onRemove, onToggle}) {
   return (
     <div className="min-h-[320px] max-h-[512px] overflow-y-auto">
       {todos.map(todo => (
-        <TodoListItem todo={todo} key={todo.id}/>
+        <TodoListItem
+          todo={todo} key={todo.id}
+          onRemove={onRemove}
+          onToggle={onToggle}/>
       ))}
     </div>
   )
