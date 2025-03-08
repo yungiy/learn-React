@@ -1,64 +1,40 @@
 import TodoTemplate from './components/TodoTemplate.jsx';
 import TodoInsert from './components/TodoInsert.jsx';
 import TodoList from './components/TodoList.jsx';
-import {useCallback, useRef, useState} from 'react';
+import {useReducer, useRef} from 'react';
+import todoReducer from './hooks/todoReducer.jsx';
 
 export default function App() {
-  const [todos, setTodos] = useState([
-    {
-      id: 1,
-      text: 'react study',
-      checked: true
-    }, {
-      id: 2,
-      text: 'js study',
-      checked: true
-    },
-    {
-      id: 3,
-      text: 'css study',
-      checked: false
-    }
-  ]);
+  const [todos, dispatch] = useReducer(todoReducer, []);
 
   // 고유값으로 사용될 id
   // ref를 사용하여 변수 담기
-  const nextId = useRef(4);
+  const nextId = useRef(1);
 
-  const onInsert = useCallback(
-    text => {
-      const todo = {
-        id: nextId.current,
-        text,
-        checked: false
-      };
-      setTodos(todos.concat(todo));
-      nextId.current += 1;
-    },
-    [todos]
-  )
+  const onInsert = text => {
+    const todo = {
+      id: nextId.current,
+      text,
+      checked: false
+    };
+    dispatch({type: 'INSERT', todo});
+    nextId.current += 1;
+  };
 
-  const onRemove = useCallback(id => {
-      setTodos(todos.filter(todo => todo.id !== id));
-    }, [todos]
-  );
+  const onRemove = id => {
+    dispatch({type: 'REMOVE', id});
+  };
 
-  const onToggle = useCallback(id => setTodos(
-      todos.map(todo => todo.id === id ? {
-          ...todo,
-          checked: !todo.checked
-        } : todo
-      )
-    ), [todos]
-  )
+  const onToggle = id => {
+    dispatch({type: 'TOGGLE', id});
+  };
 
   return (
-
     <>
       <TodoTemplate>
         <TodoInsert onInsert={onInsert}/>
         <TodoList todos={todos} onRemove={onRemove} onToggle={onToggle}/>
       </TodoTemplate>
     </>
-  )
+  );
 }

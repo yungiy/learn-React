@@ -4,8 +4,9 @@ import {
   MdRemoveCircleOutline
 } from 'react-icons/md';
 import {twMerge} from 'tailwind-merge';
+import React from 'react';
 
-export default function TodoListItem({todo, onRemove, onToggle}) {
+function TodoListItem({todo, onRemove, onToggle}) {
   const {id, text, checked} = todo;
 
   return (
@@ -37,3 +38,5 @@ export default function TodoListItem({todo, onRemove, onToggle}) {
     </div>
   )
 }
+
+export default React.memo(TodoListItem);

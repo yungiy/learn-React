@@ -1,6 +1,7 @@
 import TodoListItem from './TodoListItem.jsx';
+import React from 'react';
 
-export default function TodoList({todos, onRemove, onToggle}) {
+function TodoList({todos, onRemove, onToggle}) {
   return (
     <div className="min-h-[320px] max-h-[512px] overflow-y-auto">
       {todos.map(todo => (
@@ -12,3 +13,5 @@ export default function TodoList({todos, onRemove, onToggle}) {
     </div>
   )
 }
+
+export default React.memo(TodoList)
