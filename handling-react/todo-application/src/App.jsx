@@ -11,29 +11,33 @@ export default function App() {
   // ref를 사용하여 변수 담기
   const nextId = useRef(1);
 
-  const onInsert = text => {
+  const onCreate = text => {
     const todo = {
       id: nextId.current,
       text,
       checked: false
     };
-    dispatch({type: 'INSERT', todo});
+    dispatch({type: 'CREATE', todo});
     nextId.current += 1;
   };
 
-  const onRemove = id => {
-    dispatch({type: 'REMOVE', id});
+  const onDelete = id => {
+    dispatch({type: 'DELETE', id});
   };
 
-  const onToggle = id => {
-    dispatch({type: 'TOGGLE', id});
+  const onComplete = id => {
+    dispatch({type: 'COMPLETE', id});
   };
+
+  const onUpdate = id => {
+    dispatch({type: 'UPDATE', id});
+  }
 
   return (
     <>
       <TodoTemplate>
-        <TodoInsert onInsert={onInsert}/>
-        <TodoList todos={todos} onRemove={onRemove} onToggle={onToggle}/>
+        <TodoInsert onInsert={onCreate}/>
+        <TodoList todos={todos} onRemove={onDelete} onToggle={onComplete} onUpdate={onUpdate}/>
       </TodoTemplate>
     </>
   );

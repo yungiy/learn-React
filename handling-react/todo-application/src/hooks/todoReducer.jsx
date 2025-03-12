@@ -1,10 +1,15 @@
 const todoReducer = (todos, action) => {
   switch (action.type) {
-    case 'INSERT':
+    case 'CREATE':
       return todos.concat(action.todo);
-    case 'REMOVE':
+    case 'DELETE':
       return todos.filter(todo => todo.id !== action.id);
-    case 'TOGGLE':
+    case 'UPDATE':
+      return todos.map(todo => todo.id === action.id ? {
+        ...todo,
+        text: action.text
+      } : todo);
+    case 'COMPLETE':
       return todos.map(todo => todo.id === action.id ? {
         ...todo,
         checked: !todo.checked

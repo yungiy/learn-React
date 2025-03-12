@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="db2c10d0-dfb3-4ff5-bc5d-96f74863edb5" name="변경" comment="">
-      <change afterPath="$PROJECT_DIR$/../../todo-application/src/hooks/todoReducer.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../todo-application/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../todo-application/src/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../todo-application/src/components/TodoList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../todo-application/src/components/TodoList.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../todo-application/src/components/TodoListItem.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../todo-application/src/components/TodoListItem.jsx" afterDir="false" />
-    </list>
+    <list default="true" id="db2c10d0-dfb3-4ff5-bc5d-96f74863edb5" name="변경" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -26,25 +21,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "main",
-    "javascript.nodejs.core.library.configured.version": "23.2.0",
-    "javascript.nodejs.core.library.typings.version": "22.13.10",
-    "last_opened_file_path": "/Users/yang-yungi/Desktop/yungiy/learn-React/handling-react/blog/blog-backend",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "com.github.copilot.settings.ApplicationConfigurable",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;23.2.0&quot;,
+    &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;22.13.10&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/yang-yungi/Desktop/yungiy/learn-React/handling-react/blog/blog-backend&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.github.copilot.settings.ApplicationConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -62,6 +57,7 @@
       <updated>1741439635930</updated>
       <workItem from="1741439637047" duration="2150000" />
       <workItem from="1741442970603" duration="1585000" />
+      <workItem from="1741657386174" duration="42000" />
     </task>
     <servers />
   </component>
