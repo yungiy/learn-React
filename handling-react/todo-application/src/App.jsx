@@ -29,15 +29,11 @@ export default function App() {
     dispatch({type: 'COMPLETE', id});
   };
 
-  const onUpdate = id => {
-    dispatch({type: 'UPDATE', id});
-  }
-
   return (
     <>
       <TodoTemplate>
         <TodoInsert onInsert={onCreate}/>
-        <TodoList todos={todos} onRemove={onDelete} onToggle={onComplete} onUpdate={onUpdate}/>
+        <TodoList todos={todos} onRemove={onDelete} onToggle={onComplete}/>
       </TodoTemplate>
     </>
   );

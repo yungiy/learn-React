@@ -1,14 +1,10 @@
 import {MdCheckBox, MdCheckBoxOutlineBlank, MdEdit} from 'react-icons/md';
 import {IoMdTrash} from "react-icons/io";
 import {twMerge} from 'tailwind-merge';
-import React, {useState} from 'react';
+import React from 'react';
 
-function TodoListItem({todo, onRemove, onToggle, onUpdate}) {
+function TodoListItem({todo, onRemove, onToggle}) {
   const {id, text, checked} = todo;
-
-  const [editing, setEditing] = useState(false);
-  const [newText, setNewText] = useState('');
-
   return (
     <div
       className="p-2.5 flex items-center [&:nth-child(even)]:bg-[#f8f9fa] [&+&]: border-t-1 border-[#dee2e6]">
@@ -29,50 +25,16 @@ function TodoListItem({todo, onRemove, onToggle, onUpdate}) {
         >
           {text}
         </span>
-        {editing ? (
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              onUpdate(id, newText);
-              setEditing(false);
-            }}
-            className="flex items-center"
-          >
-            <input
-              value={newText}
-              onChange={(e) => setNewText(e.target.value)}
-              className="px-2 py-1 border border-gray-300 rounded"
-            />
-            <button type="submit" className="ml-2 text-gray-500 hover:text-gray-300">
-              Save
-            </button>
-          </form>
-        ) : (
-          <>
-            <div
-              className="flex items-center cursor-pointer text-gray-500 hover:text-gray-300"
-              onClick={() => setEditing(true)}
-            >
-              <MdEdit size={20}/>
-            </div>
-            <div
-              className="flex px-1.5 items-center cursor-pointer text-gray-500 hover:text-gray-300"
-              onClick={() => onRemove(id)}
-            >
-              <IoMdTrash size={20}/>
-            </div>
-          </>
-        )}
       </div>
-      {/*<div*/}
-      {/*  className="flex items-center cursor-pointer text-gray-500 hover:text-gray-300">*/}
-      {/*  <MdEdit size={20}/>*/}
-      {/*</div>*/}
-      {/*<div*/}
-      {/*  className="flex px-1.5 items-center cursor-pointer text-gray-500 hover:text-gray-300"*/}
-      {/*  onClick={() => onRemove(id)}>*/}
-      {/*  <IoMdTrash size={20}/>*/}
-      {/*</div>*/}
+      <div
+        className="flex items-center cursor-pointer text-gray-500 hover:text-gray-300">
+        <MdEdit size={20}/>
+      </div>
+      <div
+        className="flex px-1.5 items-center cursor-pointer text-gray-500 hover:text-gray-300"
+        onClick={() => onRemove(id)}>
+        <IoMdTrash size={20}/>
+      </div>
     </div>
   )
 }
